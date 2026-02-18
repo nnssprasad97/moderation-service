@@ -10,6 +10,7 @@ from src.config import settings
 from src.database import AsyncSessionLocal
 from src.models import ModerationResult
 
+# Process content from queue and perform moderation checks
 async def process_content(session: AsyncSession, event_data: dict):
     content_id = event_data['contentId']
     text = event_data['text']
