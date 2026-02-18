@@ -1,3 +1,4 @@
+# Pydantic schemas for request/response validation and data serialization
 from pydantic import BaseModel, UUID4, Field
 
 class ContentSubmitRequest(BaseModel):
