@@ -11,6 +11,7 @@ c
         self.capacity = settings.RATE_LIMIT_CAPACITY
         self.rate = settings.RATE_LIMIT_REFILL_RATE / 60.0  # tokens per second
 
+    # Check if user has available tokens based on rate limit policy
     async def is_allowed(self, user_id: str) -> bool:
         key = f"rate_limit:{user_id}"
         now = time.time()
