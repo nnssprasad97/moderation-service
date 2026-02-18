@@ -1,0 +1,63 @@
+services:
+  api:
+    build: .
+    command: uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://user:password@db:5432/moderation_db
+      - REDIS_URL=redis://redis:6379/0
+      - RATE_LIMIT_REFILL_RATE=5 # Tokens per minute
+      - RATE_LIMIT_CAPACITY=10
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  processor:
+    build: .
+    command: python -m src.processor.main
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://user:password@db:5432/moderation_db
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      api:
+        condition: service_started # Wait for API to potentially init DB
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: moderation_db
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U user -d moderation_db" ]
+      interval: 5s
+      retries: 5
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6380:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      retries: 5
+
+volumes:
+  pg_data:
