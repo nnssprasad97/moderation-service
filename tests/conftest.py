@@ -1,3 +1,4 @@
+# Pytest configuration file with shared fixtures for testing
 import pytest
 import asyncio
 from typing import AsyncGenerator
