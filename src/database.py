@@ -9,6 +9,7 @@ AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False, class_=As
 class Base(DeclarativeBase):
     pass
 
+# Dependency injection for database session in FastAPI endpoints
 async def get_db():
     async with AsyncSessionLocal() as session:
         yield session
