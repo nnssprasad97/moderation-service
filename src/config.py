@@ -1,6 +1,7 @@
 # Configuration management using Pydantic BaseSettings for environment variables
 from pydantic_settings import BaseSettings
 
+# Settings class for application configuration loaded from environment
 class Settings(BaseSettings):
     DATABASE_URL: str
     REDIS_URL: str
