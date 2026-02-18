@@ -1,3 +1,4 @@
+# Background processor worker - consumes events from Redis and performs moderation
 import asyncio
 import json
 import redis.asyncio as redis
