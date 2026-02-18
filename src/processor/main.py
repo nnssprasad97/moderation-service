@@ -15,6 +15,7 @@ async def process_content(session: AsyncSession, event_data: dict):
     text = event_data['text']
     
     print(f"Processing content: {content_id}")
+        # Simple keyword-based moderation - checks for blacklisted words
     
     # Mock Moderation Logic
     # Reject if contains 'badword', otherwise Approve
