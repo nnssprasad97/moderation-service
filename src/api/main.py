@@ -36,6 +36,7 @@ async def submit_content(
     payload: ContentSubmitRequest, 
     db: AsyncSession = Depends(get_db)
 ):
+        # Enforce rate limiting using token bucket algorithm
     # 1. Rate Limiting
     if not await rate_limiter.is_allowed(payload.userId):
         raise HTTPException(
