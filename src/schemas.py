@@ -10,6 +10,7 @@ class ContentSubmitRequest(BaseModel):
 class ContentResponse(BaseModel):
     contentId: UUID4
 
+# Response schema for status check with moderation decision
 class StatusResponse(BaseModel):
     contentId: UUID4
     status: str
