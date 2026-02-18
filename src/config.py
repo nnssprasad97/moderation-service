@@ -1,3 +1,4 @@
+# Configuration management using Pydantic BaseSettings for environment variables
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
