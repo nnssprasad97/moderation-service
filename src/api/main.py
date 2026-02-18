@@ -64,6 +64,7 @@ async def submit_content(
 
     return {"contentId": new_content.id}
 
+# Status retrieval endpoint - fetches moderation result from DB
 @app.get("/api/v1/content/{content_id}/status", response_model=StatusResponse)
 async def get_status(content_id: str, db: AsyncSession = Depends(get_db)):
     try:
