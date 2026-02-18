@@ -6,6 +6,7 @@ class ContentSubmitRequest(BaseModel):
     userId: str = Field(..., min_length=1)
     text: str = Field(..., min_length=1)
 
+# Response schema after successful submission
 class ContentResponse(BaseModel):
     contentId: UUID4
 
