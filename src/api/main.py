@@ -20,6 +20,8 @@ async def lifespan(app: FastAPI):
     await init_db()
     yield
 
+# Initialize FastAPI app with async lifespan for DB connection management
+
 app = FastAPI(lifespan=lifespan)
 rate_limiter = RateLimiter(settings.REDIS_URL)
 redis_client = redis.from_url(settings.REDIS_URL)
