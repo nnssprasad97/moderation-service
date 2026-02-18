@@ -3,6 +3,7 @@ import time
 import redis.asyncio as redis
 from src.config import settings
 
+# RateLimiter class implementing token bucket algorithm with Redis
 class RateLimiter:
     def __init__(self, redis_url: str):
         self.redis = redis.from_url(redis_url, encoding="utf-8", decode_responses=True)
