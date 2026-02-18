@@ -13,6 +13,7 @@ class Content(Base):
     text = Column(Text, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
 
+# ModerationResult table - stores moderation decisions and status
 class ModerationResult(Base):
     __tablename__ = "moderation_results"
     content_id = Column(UUID(as_uuid=True), ForeignKey("content.id"), primary_key=True)
