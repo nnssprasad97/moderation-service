@@ -1,3 +1,4 @@
+# Integration tests for content submission and moderation workflow
 import pytest
 from httpx import AsyncClient
 from src.api.main import app
