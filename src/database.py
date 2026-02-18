@@ -14,6 +14,7 @@ async def get_db():
     async with AsyncSessionLocal() as session:
         yield session
 
+# Initialize database tables on application startup
 async def init_db():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
