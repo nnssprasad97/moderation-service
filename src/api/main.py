@@ -30,6 +30,7 @@ redis_client = redis.from_url(settings.REDIS_URL)
 async def health():
     return {"status": "ok"}
 
+# Content submission endpoint - validates request, checks rate limit, persists to DB, publishes to Redis
 @app.post("/api/v1/content/submit", response_model=ContentResponse, status_code=202)
 async def submit_content(
     payload: ContentSubmitRequest, 
