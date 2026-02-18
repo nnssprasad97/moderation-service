@@ -14,7 +14,8 @@ from src.models import Content, ModerationResult
 from src.services.rate_limiter import RateLimiter
 from src.config import settings
 
-# Lifetime manager to init DB on startup
+#
+# Async context manager decorator for startup/shutdown logicLifetime manager to init DB on startup
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await init_db()
