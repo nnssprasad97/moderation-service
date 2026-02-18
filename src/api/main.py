@@ -1,3 +1,4 @@
+# FastAPI main application for content moderation service - handles content submission
 from fastapi import FastAPI, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
