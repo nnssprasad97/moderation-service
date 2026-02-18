@@ -1,3 +1,4 @@
+# SQLAlchemy ORM models for content submission and moderation results
 import uuid
 from datetime import datetime
 from sqlalchemy import Column, String, Text, DateTime, ForeignKey
