@@ -31,6 +31,7 @@ async def process_content(session: AsyncSession, event_data: dict):
     await session.commit()
     print(f"Content {content_id} marked as {status}")
 
+# Main worker loop - continuously processes messages from Redis queue
 async def main():
     print("Starting Moderation Processor...")
     r = redis.from_url(settings.REDIS_URL, encoding="utf-8", decode_responses=True)
